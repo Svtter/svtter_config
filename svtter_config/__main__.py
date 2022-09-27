@@ -10,7 +10,7 @@ parser.add_argument('cmd', help='command to run. zsh/vim/alias')
 args = parser.parse_args()
 
 if args.cmd == 'alias':
-    if os.getenv('SHELL') == 'zsh':
+    if os.getenv('SHELL') == '/usr/bin/zsh':
         config_filepath = '~/.zshenv'
     else:
         config_filepath = '~/.profile'
