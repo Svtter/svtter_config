@@ -1,4 +1,5 @@
 import os
+import pathlib
 import argparse
 from svtter_config import config
 
@@ -11,9 +12,11 @@ args = parser.parse_args()
 
 if args.cmd == 'alias':
     if os.getenv('SHELL') == '/usr/bin/zsh':
-        config_filepath = '~/.zshenv'
+        config_filepath = pathlib.Path.home() / '.zshenv'
     else:
-        config_filepath = '~/.profile'
+        config_filepath = pathlib.Path.home() / '.profile'
+    if not config_filepath.exists():
+        config_filepath.touch()
     with open(config_filepath, 'w+') as f:
         f.write(config.zshenv)
 elif args.cmd == 'zsh':
